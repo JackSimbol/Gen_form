@@ -1,6 +1,6 @@
 /* 自动根据保存的信息生成
  * 供用户填写的问卷
- * 2022/9/27
+ * 2022/9/8
  */
 
 class info {
@@ -40,17 +40,17 @@ function readText(inText){
             }
             switch(i){
             /* id */
-                case 0: {
+                case '0': {
                     p_info.qid = raw_parse;
                     break;
                 }
             /* body */
-                case 1: {
+                case '1': {
                     p_info.qbody = raw_parse;
                     break;
                 }
             /* type */
-                case 2: {
+                case '2': {
                     p_info.qtype = raw_parse;
                     break;
                 }
