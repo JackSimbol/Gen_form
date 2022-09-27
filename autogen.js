@@ -1,6 +1,6 @@
 /* 自动根据保存的信息生成
  * 供用户填写的问卷
- * 2022/9/27
+ * 2022/9/8
  */
 
 class info {
@@ -135,6 +135,9 @@ function create_slider(id, body, detail, property){
         qtable += `<div id="` + oid[i] + `_body">` + detail[i] + `</div>`;
         qtable += `<div class="slider"><input type="number" id="` + oid[i] + `_weight" min="0" max="100" value="0" sid="` + oid[i] + `_slider">`;
         qtable += `<input type="range" id="` + oid[i] + `_slider" min="0" max="100" value="0" wid="` + oid[i] + `_weight"></div></td></tr>`;
+    }
+    qtable += `<tr><td><button id="` + id + `_check" style="fload:left">check</button><div class="error" id="` + logid + `"></div></td></tr>`;
+    qtable += `<tr><td><button id="` + id + `_reset">reset</button></td></tr>`;
 /* An Example
  *      <tr>
             <td id="slider_1_a" sid="slider_1_a_slider" wid="slider_1_a_weight" bid="slider_1_a_body">
@@ -147,8 +150,19 @@ function create_slider(id, body, detail, property){
                 </div>
             </td>
         </tr>
+        <tr>
+            <td>
+                <button id="check" style="float:left">check</button>
+                <div class="error" id="slider_1_log"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="reset">reset</button>
+            </td>
+        </tr>
  */
-    }
+    
     qtable += `</tbody></table>`;
     return qtable;
 }
@@ -234,7 +248,7 @@ function create_text(id, body, detail, property){
     return qtable;
 }
 
-function generate_form(inText){
+function generate_form(inText, display_space){ //先生成html主体，再向主体上绑定事件
     console.log("reading...");
     form_info = readText(inText);
     console.log("generating...");
@@ -269,5 +283,33 @@ function generate_form(inText){
     qform += `<button id="submit" idlist="` + qstring + `">submit</button><script src="qtest.js"></script>`;
     /* <button id="submit" idlist="radio_1,slider_1,checkbox_1,text_1">submit</button> */
     console.log(qform);
-    return qform;
+    console.log("Done.");
+    display_space.innerHTML = qform; // display_space must be a 'div' or other space
+    for(var id of qlist){
+        qt = document.getElementById(id);
+        switch(qt.getAttribute("type")){
+            case 'radio':{
+                for(var iid of qt.getAttribute("idlist")){
+                    document.getElementById(iid+"_in").addEventListener("click", check_radio(iid+"_in", id));
+                }
+                break;
+            }
+            case 'slider':{
+                s_idlist = qt.getAttribute("idlist");
+                for(var iid of s_idlist){
+                    addListener(iid+"_slider", iid+"_weight");
+                    document.getElementById(iid+"_slider").addEventListener("change", process_slider(s_idlist, iid+"_slider"));
+                    document.getElementById(iid+"_weight").addEventListener("change", process_weight(s_idlist, iid+"_weight"));
+                }
+                document.getElementById(id+"_check").addEventListener("click", check(id));
+                document.getElementById(id+"_reset").addEventListener("click", reset(id));
+                break;
+            }
+            default: break;
+        }
+    }
+    document.getElementById("submit").addEventListener("click", function(){
+        console.log(unparse("submit"));
+    })
+    return;
 }

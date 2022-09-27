@@ -308,6 +308,7 @@ function unparse(subid){ //总unparse函数
 
 // Implements on demo
 
+/*
 document.getElementById("radio_1_a_in").onclick = function(){
     check_radio("radio_1_a_in", "radio_1");
 }
@@ -361,3 +362,4 @@ document.getElementById("reset").onclick = function(){
 document.getElementById("submit").onclick = function(){
     console.log(unparse("submit"));
 }
+*/
