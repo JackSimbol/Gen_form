@@ -256,7 +256,7 @@ function check_max(id){
             cnt += 1;
         }
     }
-    if(cnt > max_i)
+    if(cnt > max_i*1)
         return false;
     return true;
 }
