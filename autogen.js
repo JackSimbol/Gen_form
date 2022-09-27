@@ -293,8 +293,12 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
             s_idlist = qt.getAttribute("idlist");
             for(var iid of get_id(s_idlist)){
                 addListener(iid+"_slider", iid+"_weight");
-                document.getElementById(iid+"_slider").addEventListener("change", process_slider(s_idlist, iid+"_slider"));
-                document.getElementById(iid+"_weight").addEventListener("change", process_weight(s_idlist, iid+"_weight"));
+                document.getElementById(iid+"_slider").addEventListener("change", function(){
+                    process_slider(s_idlist, iid+"_slider")
+                });
+                document.getElementById(iid+"_weight").addEventListener("change", function(){
+                    process_weight(s_idlist, iid+"_weight")
+                });
             }
             document.getElementById(id+"_check").addEventListener("click", function(){
                 check(id)
@@ -304,9 +308,16 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
             });
             break;
         }
+        else if(quest.qtype == "radio"){
+            for (var iid of get_id(qt.getAttribute("idlist"))){
+                document.getElementById(iid+"_in").addEventListener("click", function(){
+                    check_radio(iid+"_in", id);
+                });
+            }
+        }
     }
     document.getElementById("submit").addEventListener("click", function(){
         console.log(unparse("submit"));
-    })
+    });
     return;
 }
