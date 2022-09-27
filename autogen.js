@@ -180,7 +180,7 @@ function create_checkbox(id, body, detail, property){
     if(property[1].split("=")[0] == "max"){
         max_i = property[1].split("=")[1];
     }
-    qtable += `<tr><td id="`+ id + `" qtype="checkbox"`+ ` idlist="` + idlist + `" nec="` + nec + `" max="` + max +`">` + body + "</td></tr>";
+    qtable += `<tr><td id="`+ id + `" qtype="checkbox"`+ ` idlist="` + idlist + `" nec="` + nec + `" max="` + max_i +`">` + body + "</td></tr>";
     for (var i in detail){
         qtable += `<tr><td id="` + oid[i] + `" in_id="` + oid[i] + `_in" ob_id="` + oid[i] + `_ob">`;
         qtable += `<input type="checkbox" id="` + oid[i] + `_in" style="float:left">`;
