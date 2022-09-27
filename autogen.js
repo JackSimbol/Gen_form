@@ -249,6 +249,22 @@ function create_text(id, body, detail, property){
     return qtable;
 }
 
+function radio_loop(iid, id){
+    document.getElementById(iid+"_in").addEventListener("click", function(){
+        check_radio(iid+"_in", id);
+    });
+}
+
+function slider_loop(s_idlist, iid){
+    addListener(iid+"_slider", iid+"_weight");
+    document.getElementById(iid+"_slider").addEventListener("change", function(){
+        process_slider(s_idlist, iid+"_slider")
+    });
+    document.getElementById(iid+"_weight").addEventListener("change", function(){
+        process_weight(s_idlist, iid+"_weight")
+    });
+}
+
 function generate_form(inText, display_space){ //先生成html主体，再向主体上绑定事件
     console.log("reading...");
     form_info = readText(inText);
@@ -292,13 +308,7 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
         if(quest.qtype == "slider"){
             s_idlist = qt.getAttribute("idlist");
             for(var iid of get_id(s_idlist)){
-                addListener(iid+"_slider", iid+"_weight");
-                document.getElementById(iid+"_slider").addEventListener("change", function(){
-                    process_slider(s_idlist, iid+"_slider")
-                });
-                document.getElementById(iid+"_weight").addEventListener("change", function(){
-                    process_weight(s_idlist, iid+"_weight")
-                });
+                slider_loop(s_idlist, iid);
             }
             document.getElementById(id+"_check").addEventListener("click", function(){
                 check(id)
@@ -310,9 +320,7 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
         }
         else if(quest.qtype == "radio"){
             for (var iid of get_id(qt.getAttribute("idlist"))){
-                document.getElementById(iid+"_in").addEventListener("click", function(){
-                    check_radio(iid+"_in", id);
-                });
+                radio_loop(iid, id);
             }
         }
     }

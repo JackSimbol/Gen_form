@@ -3,7 +3,7 @@ function get_id(idlist){
 }
 
 function check_radio(sid, tid){ //选择单选题某一选项时触发
-    document.getElementById(sid).checked = true;
+    //document.getElementById(sid).checked = true;
     var oid = get_id(document.getElementById(tid).getAttribute("idlist"));
     for(var id of oid){
         iid = document.getElementById(id).getAttribute("in_id");
