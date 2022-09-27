@@ -1,6 +1,6 @@
 /* 自动根据保存的信息生成
  * 供用户填写的问卷
- * 2022/9/8 ~ 2022/9/27
+ * 2022/9/8
  */
 
 class info {
@@ -180,6 +180,7 @@ function create_checkbox(id, body, detail, property){
     if(property[1].split("=")[0] == "max"){
         max_i = property[1].split("=")[1];
     }
+    var oid = get_id(idlist);
     qtable += `<tr><td id="`+ id + `" qtype="checkbox"`+ ` idlist="` + idlist + `" nec="` + nec + `" max="` + max_i +`">` + body + "</td></tr>";
     for (var i in detail){
         qtable += `<tr><td id="` + oid[i] + `" in_id="` + oid[i] + `_in" ob_id="` + oid[i] + `_ob">`;
@@ -311,5 +312,5 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
     document.getElementById("submit").addEventListener("click", function(){
         console.log(unparse("submit"));
     })
-    return; //依靠调用
+    return;
 }
