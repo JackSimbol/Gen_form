@@ -235,7 +235,9 @@ function create_text(id, body, detail, property){
 }
 
 function generate_form(inText){
+    console.log("reading...");
     form_info = readText(inText);
+    console.log("generating...");
     qlist = [];
     var qform = "";
     for(var quest_info of form_info){
@@ -266,5 +268,6 @@ function generate_form(inText){
     qstring = qstring.slice(0, qstring.length-1);
     qform += `<button id="submit" idlist="` + qstring + `">submit</button><script src="qtest.js"></script>`;
     /* <button id="submit" idlist="radio_1,slider_1,checkbox_1,text_1">submit</button> */
+    console.log("Done.");
     return qform;
 }
