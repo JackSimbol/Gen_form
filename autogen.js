@@ -286,9 +286,10 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
     console.log(qform);
     console.log("Done.");
     display_space.innerHTML = qform; // display_space must be a 'div' or other space
-    for(var id of qlist){
+    for(var quest of form_info){
+        id = quest.qid;
         qt = document.getElementById(id);
-        switch(qt.getAttribute("type")){
+        switch(quest.qtype){
             case 'radio':{
                 for(var iid of qt.getAttribute("idlist")){
                     document.getElementById(iid+"_in").addEventListener("click", check_radio(iid+"_in", id));
