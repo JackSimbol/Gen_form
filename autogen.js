@@ -1,6 +1,6 @@
 /* 自动根据保存的信息生成
  * 供用户填写的问卷
- * 2022/9/8 ~ 2022/9/27
+ * 2022/9/8
  */
 
 class info {
@@ -303,8 +303,8 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
                     document.getElementById(iid+"_slider").addEventListener("change", process_slider(s_idlist, iid+"_slider"));
                     document.getElementById(iid+"_weight").addEventListener("change", process_weight(s_idlist, iid+"_weight"));
                 }
-                document.getElementById(id+"_check").addEventListener("click", check(id));
-                document.getElementById(id+"_reset").addEventListener("click", reset(id));
+                document.getElementById(id+"_check").addEventListener("click", check_all(id));
+                document.getElementById(id+"_reset").addEventListener("click", reset_slider(id));
                 break;
             }
             default: break;

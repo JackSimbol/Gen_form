@@ -12,6 +12,8 @@ function check_radio(sid, tid){ //选择单选题某一选项时触发
         }
     }
 }
+
+
 /*
  * 选择题文本示例：
  * "id=abc,type=radio,body=[Who is the most beautiful woman?],options=[A.Queen][B.Snowwhite],checked=abc_a"
@@ -145,7 +147,7 @@ function check_sum(oid){ //检查总和是否为100
 tid: 问题id
 lid: slider下方一行显示报错log
 */
-function check(tid){  //提交前/作答完成后检查
+function check_all(tid){  //提交前/作答完成后检查
     var oid = get_id(document.getElementById(tid).getAttribute("idlist"));
     var lid = document.getElementById(tid).getAttribute("logid");
     if(!check_sum(oid)){
@@ -169,7 +171,7 @@ function process_weight(idlist, tid){
     keep_value_weight(tid, set_max(oid, tid));
 }
 
-function reset(tid){ //重设问题值
+function reset_slider(tid){ //重设问题值
     var oid = get_id(idlist);
     var log_id = document.getElementById(tid).getAttribute("logid");
     for(var id of oid){
