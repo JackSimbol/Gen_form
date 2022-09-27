@@ -269,6 +269,5 @@ function generate_form(inText){
     qform += `<button id="submit" idlist="` + qstring + `">submit</button><script src="qtest.js"></script>`;
     /* <button id="submit" idlist="radio_1,slider_1,checkbox_1,text_1">submit</button> */
     console.log(qform);
-    console.log("Done.");
     return qform;
 }
