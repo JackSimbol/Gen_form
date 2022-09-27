@@ -228,7 +228,7 @@ function create_text(id, body, detail, property){
     if(property[0].split("=")[0] == "nec"){
         nec = property[0].split("=")[1];
     }
-    qtable += `<tr><td id="`+ id + `" qtype="text"`+ ` text_id="` + text_id + `" nec="` + nec`">` + body + "</td></tr>";
+    qtable += `<tr><td id="`+ id + `" qtype="text"`+ ` text_id="` + text_id + `" nec="` + nec + `">` + body + "</td></tr>";
     qtable += `<tr><td><textarea id="` + text_id + `"></textarea></td></tr></tbody></table>`;
 /*
  * <table>
