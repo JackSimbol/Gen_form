@@ -311,5 +311,5 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
     document.getElementById("submit").addEventListener("click", function(){
         console.log(unparse("submit"));
     })
-    return;
+    return; //依靠调用
 }
