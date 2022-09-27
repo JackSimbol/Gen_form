@@ -147,7 +147,7 @@ function check_sum(oid){ //检查总和是否为100
 tid: 问题id
 lid: slider下方一行显示报错log
 */
-function check_all(tid){  //提交前/作答完成后检查
+function check(tid){  //提交前/作答完成后检查
     var oid = get_id(document.getElementById(tid).getAttribute("idlist"));
     var lid = document.getElementById(tid).getAttribute("logid");
     if(!check_sum(oid)){
@@ -171,8 +171,8 @@ function process_weight(idlist, tid){
     keep_value_weight(tid, set_max(oid, tid));
 }
 
-function reset_slider(tid){ //重设问题值
-    var oid = get_id(idlist);
+function reset(tid){ //重设问题值
+    var oid = get_id(document.getElementById(tid).getAttribute("idlist"));
     var log_id = document.getElementById(tid).getAttribute("logid");
     for(var id of oid){
         id = document.getElementById(id).getAttribute("sid");

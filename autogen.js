@@ -297,10 +297,10 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
                 document.getElementById(iid+"_weight").addEventListener("change", process_weight(s_idlist, iid+"_weight"));
             }
             document.getElementById(id+"_check").addEventListener("click", function(){
-                check_all(id)
+                check(id)
             });
             document.getElementById(id+"_reset").addEventListener("click", function(){
-                reset_slider(id)
+                reset(id)
             });
             break;
         }
