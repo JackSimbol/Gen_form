@@ -6,8 +6,8 @@
 class info {
     constructor() {
         this.qid = "";
-        this.qbody = "";
         this.qtype = "";
+        this.qbody = "";
         this.qdetail = [];
         this.qproperty = [];
     }
@@ -44,14 +44,14 @@ function readText(inText){
                     p_info.qid = raw_parse;
                     break;
                 }
-            /* body */
+            /* type */
                 case '1': {
-                    p_info.qbody = raw_parse;
+                    p_info.qtype = raw_parse;
                     break;
                 }
-            /* type */
+            /* body */
                 case '2': {
-                    p_info.qtype = raw_parse;
+                    p_info.qbody = raw_parse;
                     break;
                 }
             /* detail */
