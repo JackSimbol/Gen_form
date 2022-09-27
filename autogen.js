@@ -291,14 +291,14 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
         qt = document.getElementById(id);
         switch(quest.qtype){
             case 'radio':{
-                for(var iid of qt.getAttribute("idlist")){
+                for(var iid of get_id(qt.getAttribute("idlist"))){
                     document.getElementById(iid+"_in").addEventListener("click", check_radio(iid+"_in", id));
                 }
                 break;
             }
             case 'slider':{
                 s_idlist = qt.getAttribute("idlist");
-                for(var iid of s_idlist){
+                for(var iid of get_id(s_idlist)){
                     addListener(iid+"_slider", iid+"_weight");
                     document.getElementById(iid+"_slider").addEventListener("change", process_slider(s_idlist, iid+"_slider"));
                     document.getElementById(iid+"_weight").addEventListener("change", process_weight(s_idlist, iid+"_weight"));
