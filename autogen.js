@@ -289,25 +289,20 @@ function generate_form(inText, display_space){ //先生成html主体，再向主
     for(var quest of form_info){
         id = quest.qid;
         qt = document.getElementById(id);
-        switch(quest.qtype){
-            case 'radio':{
-                for(var iid of get_id(qt.getAttribute("idlist"))){
-                    document.getElementById(iid+"_in").addEventListener("click", check_radio(iid+"_in", id));
-                }
-                break;
+        if(quest.qtype == "slider"){
+            s_idlist = qt.getAttribute("idlist");
+            for(var iid of get_id(s_idlist)){
+                addListener(iid+"_slider", iid+"_weight");
+                document.getElementById(iid+"_slider").addEventListener("change", process_slider(s_idlist, iid+"_slider"));
+                document.getElementById(iid+"_weight").addEventListener("change", process_weight(s_idlist, iid+"_weight"));
             }
-            case 'slider':{
-                s_idlist = qt.getAttribute("idlist");
-                for(var iid of get_id(s_idlist)){
-                    addListener(iid+"_slider", iid+"_weight");
-                    document.getElementById(iid+"_slider").addEventListener("change", process_slider(s_idlist, iid+"_slider"));
-                    document.getElementById(iid+"_weight").addEventListener("change", process_weight(s_idlist, iid+"_weight"));
-                }
-                document.getElementById(id+"_check").addEventListener("click", check_all(id));
-                document.getElementById(id+"_reset").addEventListener("click", reset_slider(id));
-                break;
-            }
-            default: break;
+            document.getElementById(id+"_check").addEventListener("click", function(){
+                check_all(id)
+            });
+            document.getElementById(id+"_reset").addEventListener("click", function(){
+                reset_slider(id)
+            });
+            break;
         }
     }
     document.getElementById("submit").addEventListener("click", function(){
